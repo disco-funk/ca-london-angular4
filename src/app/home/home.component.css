@@ -1,0 +1,15 @@
+.jumbotron.london {
+  background: #000 url("../../assets/pages/home-findmeeting.jpg") center center;
+}
+
+.jumbotron.problem {
+  background: #000 url("../../assets/pages/home-who.jpg") center center;
+}
+
+.jumbotron.what {
+  background: #000 url("../../assets/pages/home-what.jpg") center center;
+}
+
+.jumbotronbutton {
+  float: right;
+}

@@ -1,40 +1,92 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/home">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink="/home"><img src="../assets/ca-logo-small-seethru.png"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/meetings">Meetings</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link" routerLink="/events">Events</a>
-      </li>
-      <li class="nav-item dropdown" ngbDropdown>
-        <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home"><i class="fa fa-home" aria-hidden="true"></i></a>
+        </li>
+
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="meetingsDropdownMenuLink" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Meetings
+          </a>
+          <div class="dropdown-menu" aria-labelledby="meetingsDropdownMenuLink" ngbDropdownMenu>
+            <a class="dropdown-item" routerLink="/aboutmeeting">About Meetings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/meetings">Find A Meeting</a>
+            <a class="dropdown-item" routerLink="/areamap">London Area Map</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/othercasites">Other CA Websites</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="eventsDropdownMenuLink" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Events
+          </a>
+          <div class="dropdown-menu" aria-labelledby="eventsDropdownMenuLink" ngbDropdownMenu>
+            <a class="dropdown-item" routerLink="/events">Events</a>
+            <a class="dropdown-item" routerLink="/convention">London Convention 2018</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="newcomerDropdownMenuLink" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            To The Newcomer
+          </a>
+          <div class="dropdown-menu" aria-labelledby="newcomerDropdownMenuLink" ngbDropdownMenu>
+            <a class="dropdown-item" routerLink="/whatisca">What is CA?</a>
+            <a class="dropdown-item" routerLink="/whoismem">Who is a CA Member?</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/12steps">12 Steps</a>
+            <a class="dropdown-item" routerLink="/12traditions">12 Traditions</a>
+            <a class="dropdown-item" routerLink="/read">Read Literature</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/helpline">Helpline&nbsp;<i class="fa fa-phone-square"
+                                                                             aria-hidden="true"></i></a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="myAccountDropdownMenuLink" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            My Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="myAccountDropdownMenuLink" ngbDropdownMenu>
+            <a class="dropdown-item" routerLink="/signup">Sign Up</a>
+            <a class="dropdown-item" routerLink="/login">Log In</a>
+          </div>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+        </li>
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Enter Meeting Postcode" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <div class="page-header">
+    <h2 class="display-3">{{title}}</h2>
   </div>
-</nav>
 
-<div>
-  <h1>{{title}}</h1>
+  <hr/>
 </div>
 
 <router-outlet></router-outlet>

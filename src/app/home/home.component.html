@@ -1,9 +1,30 @@
-<div class="jumbotron">
-  <h1 class="display-3">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
+<div class="container">
+  <div class="alert alert-success" role="alert">
+    <i class="fa fa-info-circle" aria-hidden="true"></i>
+    The Cocaine Anonymous London Helpline has now launched. <a routerLink="/helpline" class="alert-link">More Details...</a>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron what" id="what">
+        <h1 class="display-3">What is C.A.?</h1>
+        <p><a class="btn btn-primary btn-lg jumbotronbutton" role="button" routerLink="/whatisca">Learn more</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron problem" id="problem">
+        <h1 class="display-3">Who is a C.A. Member?</h1>
+        <p><a class="btn btn-primary btn-lg jumbotronbutton" role="button" routerLink="/whoismem">Learn more</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron london">
+        <h1 class="display-3">Find a C.A. meeting in London today</h1>
+        <p><a class="btn btn-primary btn-lg jumbotronbutton" role="button" routerLink="/meetings">Show me</a></p>
+      </div>
+    </div>
+  </div>
 </div>
