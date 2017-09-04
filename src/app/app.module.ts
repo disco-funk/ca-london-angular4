@@ -1,34 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
-import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
-import { EventsComponent } from './events/events.component';
-import { MeetingsComponent } from './meetings/meetings.component';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppComponent } from "./app.component";
+import { RouterModule, Routes } from "@angular/router";
+import { EventsComponent } from "./events/events.component";
+import { MeetingsComponent } from "./meetings/meetings.component";
+import { HomeComponent } from "./home/home.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 const appRoutes: Routes = [
-  { path: 'events',
+  { path: "events",
     component: EventsComponent,
-    data: { title: 'Events' }
+    data: { title: "Events" }
   },
   {
-    path: 'meetings',
+    path: "meetings",
     component: MeetingsComponent,
-    data: { title: 'Meetings' }
+    data: { title: "Meetings" }
   },
   {
-    path: 'home',
+    path: "home",
     component: HomeComponent,
-    data: { title: 'Home' }
+    data: { title: "Home" }
   },
-  { path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+  { path: "",
+    redirectTo: "/home",
+    pathMatch: "full"
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
