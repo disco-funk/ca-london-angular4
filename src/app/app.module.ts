@@ -8,6 +8,7 @@ import { EventsComponent } from "./events/events.component";
 import { MeetingsComponent } from "./meetings/meetings.component";
 import { HomeComponent } from "./home/home.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { StaticPageComponent } from "./static-page/static-page.component";
 
 const appRoutes: Routes = [
   { path: "events",
@@ -24,6 +25,10 @@ const appRoutes: Routes = [
     component: HomeComponent,
     data: { title: "Home" }
   },
+  {
+    path: "page/:id",
+    component: StaticPageComponent
+  },
   { path: "",
     redirectTo: "/home",
     pathMatch: "full"
@@ -37,14 +42,16 @@ const appRoutes: Routes = [
     EventsComponent,
     MeetingsComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    StaticPageComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      appRoutes
+      // ,
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   providers: [],

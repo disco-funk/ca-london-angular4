@@ -20,7 +20,7 @@
             Meetings
           </a>
           <div class="dropdown-menu" aria-labelledby="meetingsDropdownMenuLink" ngbDropdownMenu>
-            <a class="dropdown-item" routerLink="/aboutmeeting">About Meetings</a>
+            <a class="dropdown-item" routerLink="/page/aboutmeeting">About Meetings</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" routerLink="/meetings">Find A Meeting</a>
             <a class="dropdown-item" routerLink="/areamap">London Area Map</a>
@@ -81,12 +81,14 @@
     </div>
   </nav>
 </div>
+
 <div class="container">
   <div class="page-header">
     <h2 class="display-3">{{title}}</h2>
   </div>
 
   <hr/>
+
 </div>
 
 <router-outlet></router-outlet>
