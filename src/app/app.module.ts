@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     PageNotFoundComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
