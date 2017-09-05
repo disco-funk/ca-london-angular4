@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import "rxjs/add/operator/filter";
 
@@ -7,18 +7,18 @@ import "rxjs/add/operator/filter";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title: string;
   isCollapsed: boolean;
 
-  constructor(private router: Router, route:ActivatedRoute) {
+  constructor(private router: Router, route: ActivatedRoute) {
+    this.isCollapsed = true;
     router.events
       .filter(e => e instanceof NavigationEnd)
-      .forEach(() => this.title = route.root.firstChild.snapshot.data["title"]);
-  }
-
-  ngOnInit(): void {
-    this.isCollapsed = true;
+      .forEach(() => {
+        console.log("Inside");
+        this.title = route.root.firstChild.snapshot.data["title"];
+      });
   }
 }

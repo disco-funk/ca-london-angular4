@@ -19,11 +19,11 @@ describe("StaticPageComponent", () => {
     fixture.detectChanges();
   });
 
-  fit("should be created", () => {
+  it("should be created", () => {
     expect(component).toBeTruthy();
   });
 
-  fdescribe("Routing", () => {
+  describe("Routing", () => {
     it("should load the page content", () => {
     });
   });

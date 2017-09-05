@@ -1,44 +1,44 @@
-import {TestBed, async} from "@angular/core/testing";
-
+import {TestBed, async, ComponentFixture} from "@angular/core/testing";
+import {RouterTestingModule} from "@angular/router/testing";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppComponent} from "./app.component";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
-import {LocationStrategy} from "@angular/common";
 
-class RouterStub {
-  navigateByUrl(url: string) {
-    return url;
-  }
-}
+describe("AppComponent", () => {
+  let fixture: ComponentFixture<AppComponent>, app: AppComponent;
 
-xdescribe("AppComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
-      imports: [RouterModule], // TODO fake this
-      providers: [
-        {provide: LocationStrategy, useClass: RouterStub},
-        {provide: ActivatedRoute, useClass: RouterStub},
-        {provide: Router, useClass: RouterStub}
+      imports: [
+        NgbModule.forRoot(),
+        RouterTestingModule
       ]
-    }).compileComponents();
+    });
+
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
   }));
 
   it("should create the app", async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 
+  describe("Menu", () => {
+    it(`should be collapsed`, async(() => {
+      expect(app.isCollapsed).toEqual(true);
+    }));
+  });
+
   it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual("app");
+    expect(app.title).toBeUndefined();
+    fixture.detectChanges();
+    expect(app.title).toEqual("Home");
   }));
 
+
   it("should render title in a h1 tag", async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector("h1").textContent).toContain("Welcome to app!");
