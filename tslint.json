@@ -11,18 +11,14 @@
       "check-space"
     ],
     "curly": true,
-    "eofline": true,
+    "eofline": false,
     "forin": true,
     "import-blacklist": [
       true,
       "rxjs"
     ],
     "import-spacing": true,
-    "indent": [
-      true,
-      "spaces",
-      4
-    ],
+    "indent": [true, "spaces"],
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [

@@ -2,45 +2,51 @@ import {TestBed, async, ComponentFixture} from "@angular/core/testing";
 import {RouterTestingModule} from "@angular/router/testing";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppComponent} from "./app.component";
+import {Router} from "@angular/router";
+import {HomeComponent} from "./home/home.component";
 
 describe("AppComponent", () => {
-  let fixture: ComponentFixture<AppComponent>, app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>, component: AppComponent, router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, HomeComponent
       ],
       imports: [
         NgbModule.forRoot(),
-        RouterTestingModule
+        RouterTestingModule.withRoutes(
+          [{path: "home", component: HomeComponent, data: {title: "Home"}}])
       ]
     });
 
     fixture = TestBed.createComponent(AppComponent);
-    app = fixture.debugElement.componentInstance;
+    router = fixture.debugElement.injector.get(Router);
+    component = fixture.debugElement.componentInstance;
   }));
 
   it("should create the app", async(() => {
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   }));
 
   describe("Menu", () => {
     it(`should be collapsed`, async(() => {
-      expect(app.isCollapsed).toEqual(true);
+      expect(component.isCollapsed).toEqual(true);
     }));
   });
 
-  it(`should have as title 'app'`, async(() => {
-    expect(app.title).toBeUndefined();
+  it("should render title in a h2 tag", () => {
     fixture.detectChanges();
-    expect(app.title).toEqual("Home");
-  }));
 
+    router
+      .navigate(["home"])
+      .then(() => {
 
-  it("should render title in a h1 tag", async(() => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector("h1").textContent).toContain("Welcome to app!");
-  }));
+        fixture.detectChanges();
+        const element = fixture.debugElement.nativeElement;
+
+        expect(component.title).toEqual("Home");
+        expect(element.querySelector("h2").innerText).toEqual("Home");
+      });
+  });
 });

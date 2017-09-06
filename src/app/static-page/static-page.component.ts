@@ -16,6 +16,8 @@ export class StaticPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap
-      .subscribe((params: ParamMap) => this.pageName = params.get("id"));
+      .subscribe((params: ParamMap) => {
+        this.pageName = params.get("id");
+      });
   }
 }
