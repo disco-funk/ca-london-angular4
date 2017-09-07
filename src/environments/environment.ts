@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  API_URL: "/",
+  API_URL: "http://localhost:51685/",
   UI_ENVIRONMENT: "local"
 };

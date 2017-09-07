@@ -9,6 +9,9 @@ import { MeetingsComponent } from "./meetings/meetings.component";
 import { HomeComponent } from "./home/home.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { StaticPageComponent } from "./static-page/static-page.component";
+import {StaticPageService} from "./static-page/static-page.service";
+import {APP_CONFIG, appConfig} from "./config/app.config";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes = [
   { path: "events",
@@ -46,6 +49,7 @@ const appRoutes: Routes = [
     StaticPageComponent
   ],
   imports: [
+    HttpClientModule,
     NgbModule.forRoot(),
     BrowserModule,
     RouterModule.forRoot(
@@ -54,7 +58,7 @@ const appRoutes: Routes = [
       // { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [StaticPageService, {provide: APP_CONFIG, useValue: appConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,7 +22,7 @@ describe("StaticPageService", () => {
     });
 
     it("should load pages", inject([StaticPageService], (service: StaticPageService) => {
-      const req: TestRequest = http.expectOne("http://my.url/api/pages");
+      const req: TestRequest = http.expectOne("http://my.url/api/pages?contentType");
 
       expect(req.request.method).toEqual("GET");
 

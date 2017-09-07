@@ -1,5 +1,5 @@
 <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #36A7E7;">
     <a class="navbar-brand" routerLink="/home"><img src="../assets/ca-logo-small-seethru.png"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
@@ -25,7 +25,7 @@
             <a class="dropdown-item" routerLink="/meetings">Find A Meeting</a>
             <a class="dropdown-item" routerLink="/areamap">London Area Map</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/othercasites">Other CA Websites</a>
+            <a class="dropdown-item" routerLink="/page/othercasites">Other CA Websites</a>
           </div>
         </li>
 
@@ -36,7 +36,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="eventsDropdownMenuLink" ngbDropdownMenu>
             <a class="dropdown-item" routerLink="/events">Events</a>
-            <a class="dropdown-item" routerLink="/convention">London Convention 2018</a>
+            <a class="dropdown-item" routerLink="/page/convention">London Convention 2018</a>
           </div>
         </li>
 
@@ -46,14 +46,14 @@
             To The Newcomer
           </a>
           <div class="dropdown-menu" aria-labelledby="newcomerDropdownMenuLink" ngbDropdownMenu>
-            <a class="dropdown-item" routerLink="/whatisca">What is CA?</a>
-            <a class="dropdown-item" routerLink="/whoismem">Who is a CA Member?</a>
+            <a class="dropdown-item" routerLink="/page/whatisca">What is CA?</a>
+            <a class="dropdown-item" routerLink="/page/whoismem">Who is a CA Member?</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/12steps">12 Steps</a>
-            <a class="dropdown-item" routerLink="/12traditions">12 Traditions</a>
+            <a class="dropdown-item" routerLink="/page/12steps">12 Steps</a>
+            <a class="dropdown-item" routerLink="/page/12traditions">12 Traditions</a>
             <a class="dropdown-item" routerLink="/read">Read Literature</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/helpline">Helpline&nbsp;<i class="fa fa-phone-square"
+            <a class="dropdown-item" routerLink="/page/helpline">Helpline&nbsp;<i class="fa fa-phone-square"
                                                                              aria-hidden="true"></i></a>
           </div>
         </li>
@@ -84,7 +84,7 @@
 
 <div class="container">
   <div class="page-header">
-    <h2 class="display-3">{{title}}</h2>
+    <h1 class="display-4">{{title}}</h1>
   </div>
 
   <hr/>
