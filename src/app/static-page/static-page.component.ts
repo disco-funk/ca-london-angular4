@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {StaticPageService} from "./static-page.service";
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: "app-static-page",
@@ -10,10 +11,10 @@ import {StaticPageService} from "./static-page.service";
 export class StaticPageComponent implements OnInit {
 
   pageName: string;
-  pageContent: string;
+  pageContent: SafeHtml;
   pageCacheReady: boolean;
 
-  constructor(private route: ActivatedRoute, private staticPageService: StaticPageService) {
+  constructor(private route: ActivatedRoute, private staticPageService: StaticPageService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -21,7 +22,7 @@ export class StaticPageComponent implements OnInit {
       .subscribe((params: ParamMap) => {
         this.pageName = params.get("id");
         if (this.pageCacheReady) {
-          this.pageContent = this.staticPageService.getPage(this.pageName).PageContent;
+          this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.staticPageService.getPage(this.pageName).PageContent);
         }
       });
 
@@ -29,7 +30,7 @@ export class StaticPageComponent implements OnInit {
       .subscribe(ready => {
         this.pageCacheReady = ready;
         if (ready) {
-          this.pageContent = this.staticPageService.getPage(this.pageName).PageContent;
+          this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.staticPageService.getPage(this.pageName).PageContent);
         }
       });
   }

@@ -9,7 +9,6 @@ export class MeetingsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
 }

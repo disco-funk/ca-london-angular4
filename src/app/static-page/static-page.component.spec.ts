@@ -7,11 +7,11 @@ import {Observable} from "rxjs/Observable";
 import {StaticPageService} from "./static-page.service";
 import {MockStaticPageService} from "./mocks/mock-static-page-service";
 
-describe("StaticPageComponent", () => {
+fdescribe("StaticPageComponent", () => {
   let component: StaticPageComponent;
   let fixture: ComponentFixture<StaticPageComponent>, router: Router;
 
-  const STATIC_PAGE = "aboutmeeting";
+  const STATIC_PAGE: string = "aboutmeeting";
 
   class MockActivatedRoute extends ActivatedRoute {
     params = Observable.of({id: STATIC_PAGE});
@@ -40,8 +40,6 @@ describe("StaticPageComponent", () => {
     router = fixture.debugElement.injector.get(Router);
 
     component.pageCacheReady = true;
-
-    fixture.detectChanges();
   });
 
   it("should be created", () => {
@@ -50,6 +48,8 @@ describe("StaticPageComponent", () => {
 
   describe("Routing", () => {
     it("should load the page content", () => {
+      fixture.detectChanges();
+
       router
         .navigate(["page", STATIC_PAGE])
         .then(success => {
