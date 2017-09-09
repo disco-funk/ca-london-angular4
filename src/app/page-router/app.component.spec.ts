@@ -14,8 +14,9 @@ import {mockAppConfig} from "../config/mocks/mock-app.config";
 import {MockStaticPageService} from "../static-page/mocks/mock-static-page-service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
-fdescribe("AppComponent", () => {
-    let component: AppComponent, router: Router, pageTitleService: PageTitleService, title: Title, staticPageService: StaticPageService;
+describe("AppComponent", () => {
+    let component: AppComponent, router: Router, pageTitleService: PageTitleService, title: Title,
+        staticPageService: StaticPageService;
     let fixture: ComponentFixture<AppComponent>;
 
     beforeEach(async(() => {
