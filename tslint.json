@@ -74,10 +74,7 @@
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": false,
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-shadowed-variable": true,
@@ -146,13 +143,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "ca",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "ca",
       "kebab-case"
     ],
     "use-input-property-decorator": true,
