@@ -45,7 +45,6 @@ describe("StaticPageComponent", () => {
 
             const debugElement: DebugElement = fixture.debugElement.query(By.css("div"));
 
-            expect(component.rawPageContent).toEqual("");
             expect(debugElement.nativeElement.innerText).toEqual("");
         });
 
@@ -56,7 +55,6 @@ describe("StaticPageComponent", () => {
 
             const debugElement: DebugElement = fixture.debugElement.query(By.css("div"));
 
-            expect(component.rawPageContent).toEqual("<div>about some content</div>");
             expect(debugElement.nativeElement.innerText).toEqual("about some content");
         });
     });
