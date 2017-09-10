@@ -1,5 +1,31 @@
 <div class="container">
-  <p>
-    events works!
-  </p>
+    <ng-container *ngIf="!isLoading">
+        <div class="row" *ngFor="let event of events; let even = even">
+            <div class="col">
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <ca-event [eventDetails]="event" [isEven]="even"></ca-event>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="row" *ngIf="events.length === 0 && !isLoading">
+        <div class="col">
+            <div class="card">
+                <h3>No Events Found</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="isLoading">
+        <div class="col">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                     aria-valuenow="100"
+                     aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">Loading</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,34 @@
+<div class="row">
+    <div [ngClass]="{'col-sm-6': !!eventDetails.ThumbnailName}" *ngIf="isEven && !!eventDetails.ThumbnailName">
+
+        <img [src]="thumbnailPath()" class="img-thumbnail " alt="{{eventDetails.Title}}"
+             *ngIf="eventDetails.ThumbnailName"/>
+    </div>
+
+    <div [ngClass]="getDetailsColumnClass()">
+        <h4>{{eventDetails.PreTitle}}</h4>
+        <h3>{{eventDetails.Title}}</h3>
+        <h3>{{eventDetails.StartDate | date: "EEEE d MMMM yyyy" }}<span *ngIf="showEndDate()"> - {{eventDetails.EndDate | date:  "EEEE d MMMM yyyy" }}</span></h3>
+        <p class="text-justify">{{eventDetails.StartDate | date: "shortTime"}}<span *ngIf="showEndTime()"> - {{eventDetails.EndDate | date: "shortTime"}}</span></p>
+        <address>{{eventDetails.Address1}}
+            <span *ngIf="!!eventDetails.Address2"><br/>{{eventDetails.Address2}}</span>
+            <span *ngIf="!!eventDetails.Address3"><br/>{{eventDetails.Address3}}</span>
+            <span *ngIf="!!eventDetails.City"><br/>{{eventDetails.City}}</span>
+            <span *ngIf="!!eventDetails.Postcode"><br/>{{eventDetails.Postcode}}</span>
+        </address>
+        <p class="text-justify" [innerHtml]="eventDetails.Details"></p> <!-- SafeHtmlPipe -->
+        <p>
+            <a class="btn btn-primary" role="button" [class.disabled]="!eventDetails.FlyerName"
+               [attr.href]="getFlyerHref()"
+               target="{{!eventDetails.FlyerName ? '_top': '_blank'}}">Download Flyer</a>
+            <!--<ca-map-modal-button *ngIf="eventDetails.Postcode"-->
+            <!--postcode="eventDetails.Postcode"></ca-map-modal-button>-->
+        </p>
+    </div>
+
+    <div [ngClass]="{'col-sm-6': !!eventDetails.ThumbnailName}" *ngIf="!isEven && !!eventDetails.ThumbnailName">
+
+        <img [src]="thumbnailPath()" class="img-thumbnail" alt="{{eventDetails.Title}}"
+             *ngIf="eventDetails.ThumbnailName"/>
+    </div>
+</div>

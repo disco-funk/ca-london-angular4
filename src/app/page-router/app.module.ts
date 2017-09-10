@@ -12,6 +12,10 @@ import {APP_CONFIG, appConfig} from "../config/app.config";
 import {HttpClientModule} from "@angular/common/http";
 import {PageTitleService} from "../core/page-title.service";
 import {StaticPageService} from "../static-page/static-page.service";
+import {EventComponent} from "../events/event.component";
+import {SafeHtmlPipe} from "../events/safe-html.pipe";
+import {EventsService} from "../events/events.service";
+import {DatePipe} from "@angular/common";
 
 const appRoutes: Routes = [
     {
@@ -46,7 +50,8 @@ const appRoutes: Routes = [
         EventsComponent,
         MeetingsComponent,
         PageNotFoundComponent,
-        StaticPageComponent
+        StaticPageComponent,
+        EventComponent
     ],
     imports: [
         HttpClientModule,
@@ -57,7 +62,10 @@ const appRoutes: Routes = [
     providers: [
         {provide: APP_CONFIG, useValue: appConfig},
         PageTitleService,
-        StaticPageService
+        StaticPageService,
+        EventsService,
+        DatePipe,
+        SafeHtmlPipe
     ],
     bootstrap: [AppComponent]
 })
