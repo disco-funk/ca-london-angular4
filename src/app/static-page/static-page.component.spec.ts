@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {StaticPageComponent} from "./static-page.component";
-import {By, DomSanitizer} from "@angular/platform-browser";
+import {By} from "@angular/platform-browser";
 import {StaticPageService} from "./static-page.service";
 import {APP_CONFIG} from "../config/app.config";
 import {mockAppConfig} from "../config/mocks/mock-app.config";
@@ -10,7 +10,7 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {RouterTestingModule} from "@angular/router/testing";
 
 describe("StaticPageComponent", () => {
-    let component: StaticPageComponent, domSanitizer: DomSanitizer, staticPageService: StaticPageService;
+    let component: StaticPageComponent, staticPageService: StaticPageService;
     let fixture: ComponentFixture<StaticPageComponent>;
 
     beforeEach(async(() => {
@@ -31,11 +31,9 @@ describe("StaticPageComponent", () => {
         fixture = TestBed.createComponent(StaticPageComponent);
         staticPageService = fixture.debugElement.injector.get(StaticPageService);
         component = fixture.componentInstance;
-
     });
 
     it("should be created", () => {
-        component = fixture.componentInstance;
         expect(component).toBeTruthy();
     });
 

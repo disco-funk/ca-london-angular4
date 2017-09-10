@@ -6,7 +6,6 @@ import {AppComponent} from "./app.component";
 import {RouterModule, Routes} from "@angular/router";
 import {EventsComponent} from "../events/events.component";
 import {MeetingsComponent} from "../meetings/meetings.component";
-import {HomeComponent} from "../home/home.component";
 import {PageNotFoundComponent} from "../page-not-found/page-not-found.component";
 import {StaticPageComponent} from "../static-page/static-page.component";
 import {APP_CONFIG, appConfig} from "../config/app.config";
@@ -26,17 +25,12 @@ const appRoutes: Routes = [
         data: {title: "Meetings"}
     },
     {
-        path: "home",
-        component: HomeComponent,
-        data: {title: "Home"}
-    },
-    {
         path: "page/:id",
         component: StaticPageComponent
     },
     {
         path: "",
-        redirectTo: "/home",
+        redirectTo: "/page/home",
         pathMatch: "full"
     },
     {
@@ -51,7 +45,6 @@ const appRoutes: Routes = [
         AppComponent,
         EventsComponent,
         MeetingsComponent,
-        HomeComponent,
         PageNotFoundComponent,
         StaticPageComponent
     ],

@@ -12,14 +12,26 @@ export class StaticPageComponent implements OnInit {
 
     pageContent: SafeHtml;
     rawPageContent: string;
+    private isCacheReady: boolean;
 
     constructor(private router: Router, private domSanitizer: DomSanitizer, private staticPageService: StaticPageService,
                 private activatedRoute: ActivatedRoute) {
         this.rawPageContent = "";
+        this.isCacheReady = false;
     }
 
     ngOnInit(): void {
 
+        this.staticPageService.pageCacheReady
+            .filter(isCacheReady => isCacheReady)
+            .subscribe(() => {
+                this.isCacheReady = true;
+                const segments: Array<string> = this.router.url.split("/");
+
+                this.rawPageContent = this.staticPageService.getPage(segments[2]).PageContent;
+                this.pageContent = this.domSanitizer
+                    .bypassSecurityTrustHtml(this.rawPageContent);
+            });
 
         this.router.events
             .filter(event => event instanceof NavigationEnd)
@@ -34,15 +46,11 @@ export class StaticPageComponent implements OnInit {
             .filter(route => route.outlet === "primary")
             .mergeMap(route => route.url)
             .subscribe((url: Array<UrlSegment>) => {
-
-                this.rawPageContent = this.staticPageService.getPage(url[1].path).PageContent;
-                this.pageContent = this.domSanitizer
-                    .bypassSecurityTrustHtml(this.rawPageContent);
+                if (this.isCacheReady) {
+                    this.rawPageContent = this.staticPageService.getPage(url[1].path).PageContent;
+                    this.pageContent = this.domSanitizer
+                        .bypassSecurityTrustHtml(this.rawPageContent);
+                }
             });
-
-        // this.staticPageService.pageCacheReady
-        //     .filter(isCacheReady => isCacheReady)
-        //     .subscribe(() => {
-        //     });
     }
 }

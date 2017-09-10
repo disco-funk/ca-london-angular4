@@ -5,7 +5,6 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {RouterTestingModule} from "@angular/router/testing";
 import {StaticPageComponent} from "../static-page/static-page.component";
 import {Router} from "@angular/router";
-import {HomeComponent} from "../home/home.component";
 import {PageTitleService} from "../core/page-title.service";
 import {Title} from "@angular/platform-browser";
 import {StaticPageService} from "../static-page/static-page.service";
@@ -13,6 +12,7 @@ import {APP_CONFIG} from "../config/app.config";
 import {mockAppConfig} from "../config/mocks/mock-app.config";
 import {MockStaticPageService} from "../static-page/mocks/mock-static-page-service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Component} from "@angular/core";
 
 describe("AppComponent", () => {
     let component: AppComponent, router: Router, pageTitleService: PageTitleService, title: Title,
@@ -21,12 +21,12 @@ describe("AppComponent", () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AppComponent, StaticPageComponent, HomeComponent],
+            declarations: [AppComponent, StaticPageComponent, DummyComponent],
             imports: [NgbModule.forRoot(),
                 RouterTestingModule.withRoutes(
                     [
                         {path: "page/:id", component: StaticPageComponent},
-                        {path: "home", component: HomeComponent, data: {title: "Dynamic Page Title"}}
+                        {path: "home", component: DummyComponent, data: {title: "Dynamic Page Title"}}
                     ])],
             providers: [
                 PageTitleService,
@@ -123,3 +123,10 @@ describe("AppComponent", () => {
         });
     });
 });
+
+@Component({
+    selector: "ca-dummy-component",
+    template: "<div></div>"
+})
+class DummyComponent {
+}
