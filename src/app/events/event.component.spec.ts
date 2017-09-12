@@ -2,7 +2,6 @@ import {DebugElement} from "@angular/core";
 import {ComponentFixture, TestBed} from "@angular/core/testing";
 import {DatePipe} from "@angular/common";
 import {By} from "@angular/platform-browser";
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angular/platform-browser-dynamic/testing";
 import {EventComponent} from "./event.component";
 import {TestEvents} from "./mocks/event-data.spec";
 import {SafeHtmlPipe} from "./safe-html.pipe";
@@ -10,11 +9,6 @@ import {SafeHtmlPipe} from "./safe-html.pipe";
 describe("EventComponent", () => {
     let component: EventComponent;
     let fixture: ComponentFixture<EventComponent>;
-
-    beforeAll(() => {
-        TestBed.resetTestEnvironment();
-        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-    });
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -71,7 +65,7 @@ describe("EventComponent", () => {
 
             const result: string = component.getFlyerHref();
 
-            expect(result).toEqual("#!/page/events");
+            expect(result).toEqual("#");
         });
 
         it("should return flyer link when there is a flyer", () => {
@@ -79,7 +73,7 @@ describe("EventComponent", () => {
 
             const result: string = component.getFlyerHref();
 
-            expect(result).toEqual("../images/events/someflyer.pdf");
+            expect(result).toEqual("./assets/images/events/someflyer.pdf");
         });
     });
 

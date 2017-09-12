@@ -21,8 +21,7 @@
             <a class="btn btn-primary" role="button" [class.disabled]="!eventDetails.FlyerName"
                [attr.href]="getFlyerHref()"
                target="{{!eventDetails.FlyerName ? '_top': '_blank'}}">Download Flyer</a>
-            <!--<ca-map-modal-button *ngIf="eventDetails.Postcode"-->
-            <!--postcode="eventDetails.Postcode"></ca-map-modal-button>-->
+            <ca-map-modal-button *ngIf="eventDetails.Postcode" [postcode]="eventDetails.Postcode"></ca-map-modal-button>
         </p>
     </div>
 

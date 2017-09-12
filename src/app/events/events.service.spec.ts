@@ -1,5 +1,4 @@
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angular/platform-browser-dynamic/testing";
 import {TestBed} from "@angular/core/testing";
 import {EventsService} from "./events.service";
 import {IEvent} from "./event.interface";
@@ -11,12 +10,6 @@ import {APP_CONFIG} from "../config/app.config";
 describe("EventsService", () => {
     let service: EventsService, http: HttpTestingController;
     let actualEvents: Array<IEvent>;
-
-
-    beforeAll(() => {
-        TestBed.resetTestEnvironment();
-        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-    });
 
     beforeEach(() => {
         TestBed.configureTestingModule({

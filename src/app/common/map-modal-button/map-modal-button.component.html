@@ -1,0 +1,32 @@
+<ng-template #content>
+    <div class="modal-header">
+        <h4 class="modal-title">Map</h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <span [innerHTML]="realHtml"></span>
+    </div>
+    <div class="modal-body" id="mapModalDisclaimer">
+        <div class="card">
+            <div class="card">
+                <p class="card-text">
+                    <small>In the spirit of Tradition Six, C.A. is not allied with any sect, denomination, politics,
+                        organization or institution. As such Cocaine Anonymous London and Cocaine Anonymous as a whole does
+                        not endorse and is not affiliated with Google Maps or any of the companies and/or services offered
+                        on the Google Maps site. Any links to external websites or services are only provided as a
+                        convenience to our members.
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn btn-light" (click)="close()">Close</button>
+    </div>
+</ng-template>
+
+<button type="button" class="btn btn-primary" (click)="open(content)">
+    <i class="fa fa-globe" aria-hidden="true"></i>&nbsp;Show Map
+</button>

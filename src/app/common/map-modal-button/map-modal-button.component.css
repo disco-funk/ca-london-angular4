@@ -1,0 +1,13 @@
+.primary-modal .modal-header {
+    background-color: #36A7E7;
+    color: white;
+}
+
+.primary-modal .modal-footer {
+    background-color: #36A7E7;
+    color: white;
+}
+
+.primary-modal .close {
+    color: white;
+}
