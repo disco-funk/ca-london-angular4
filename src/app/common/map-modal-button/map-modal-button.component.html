@@ -1,16 +1,16 @@
 <ng-template #content>
-    <div class="modal-header">
+    <div class="modal-header modal-header-fix">
         <h4 class="modal-title">Map</h4>
         <button type="button" class="close" aria-label="Close" (click)="close()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <span [innerHTML]="realHtml"></span>
+        <div class="embed-responsive embed-responsive-16by9" [innerHTML]="realHtml"></div>
     </div>
     <div class="modal-body" id="mapModalDisclaimer">
         <div class="card">
-            <div class="card">
+            <div class="card-body">
                 <p class="card-text">
                     <small>In the spirit of Tradition Six, C.A. is not allied with any sect, denomination, politics,
                         organization or institution. As such Cocaine Anonymous London and Cocaine Anonymous as a whole does
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer modal-footer-fix">
         <button type="button" class="btn btn btn-light" (click)="close()">Close</button>
     </div>
 </ng-template>

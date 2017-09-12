@@ -10,6 +10,8 @@ import {TestEvents} from "./mocks/event-data.spec";
 import {MockHttpClient} from "./mocks/mock-http-client.service";
 import {MockEventsService} from "./mocks/mock-events-list.service";
 import {EventComponent} from "./event.component";
+import {MapModalButtonComponent} from "../common/map-modal-button/map-modal-button.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 describe("EventsComponent", () => {
     let component: EventsComponent;
@@ -17,10 +19,12 @@ describe("EventsComponent", () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EventsComponent, EventComponent, SafeHtmlPipe],
+            declarations: [EventsComponent, EventComponent, SafeHtmlPipe,
+                MapModalButtonComponent],
             providers: [DatePipe, {provide: EventsService, useClass: MockEventsService},
                 {provide: APP_CONFIG, useValue: mockAppConfig},
-                {provide: HttpClient, useValue: MockHttpClient}]
+                {provide: HttpClient, useValue: MockHttpClient}],
+            imports: [NgbModule.forRoot()]
         });
     }));
 

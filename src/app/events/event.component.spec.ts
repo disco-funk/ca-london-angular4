@@ -5,6 +5,8 @@ import {By} from "@angular/platform-browser";
 import {EventComponent} from "./event.component";
 import {TestEvents} from "./mocks/event-data.spec";
 import {SafeHtmlPipe} from "./safe-html.pipe";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MapModalButtonComponent} from "../common/map-modal-button/map-modal-button.component";
 
 describe("EventComponent", () => {
     let component: EventComponent;
@@ -12,8 +14,9 @@ describe("EventComponent", () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [EventComponent, SafeHtmlPipe],
-            providers: [DatePipe]
+            declarations: [EventComponent, SafeHtmlPipe, MapModalButtonComponent],
+            providers: [DatePipe],
+            imports: [NgbModule.forRoot()]
         });
 
         fixture = TestBed.createComponent(EventComponent);
