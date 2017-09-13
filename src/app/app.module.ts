@@ -16,7 +16,9 @@ import {EventComponent} from "./events/event.component";
 import {SafeHtmlPipe} from "./events/safe-html.pipe";
 import {EventsService} from "./events/events.service";
 import {DatePipe} from "@angular/common";
-import { MapModalButtonComponent } from './common/map-modal-button/map-modal-button.component';
+import {MapModalButtonComponent} from "./common/map-modal-button/map-modal-button.component";
+import {DynamicHTMLModule} from "ng-dynamic";
+import {FakeRouterLinkComponent} from "./static-page/fake-router-link/fake-router-link.component";
 
 const appRoutes: Routes = [
     {
@@ -53,13 +55,19 @@ const appRoutes: Routes = [
         PageNotFoundComponent,
         StaticPageComponent,
         EventComponent,
-        MapModalButtonComponent
+        MapModalButtonComponent,
+        FakeRouterLinkComponent
     ],
     imports: [
         HttpClientModule,
         BrowserModule,
         RouterModule.forRoot(appRoutes),
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
+        DynamicHTMLModule.forRoot({
+            components: [
+                {component: FakeRouterLinkComponent, selector: "ca-fake-router-link"}
+            ]
+        })
     ],
     providers: [
         {provide: APP_CONFIG, useValue: appConfig},

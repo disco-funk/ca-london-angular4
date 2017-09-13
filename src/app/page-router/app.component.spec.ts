@@ -13,6 +13,8 @@ import {mockAppConfig} from "../config/mocks/mock-app.config";
 import {MockStaticPageService} from "../static-page/mocks/mock-static-page-service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Component} from "@angular/core";
+import {DynamicHTMLModule} from "ng-dynamic";
+import {FakeRouterLinkComponent} from "../static-page/fake-router-link/fake-router-link.component";
 
 describe("AppComponent", () => {
     let component: AppComponent, router: Router, pageTitleService: PageTitleService, title: Title,
@@ -21,13 +23,18 @@ describe("AppComponent", () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AppComponent, StaticPageComponent, DummyComponent],
+            declarations: [AppComponent, StaticPageComponent, DummyComponent, FakeRouterLinkComponent],
             imports: [NgbModule.forRoot(),
                 RouterTestingModule.withRoutes(
                     [
                         {path: "page/:id", component: StaticPageComponent},
                         {path: "home", component: DummyComponent, data: {title: "Dynamic Page Title"}}
-                    ])],
+                    ]),
+                DynamicHTMLModule.forRoot({
+                    components: [
+                        {component: FakeRouterLinkComponent, selector: "ca-fake-router-link"}
+                    ]
+                })],
             providers: [
                 PageTitleService,
                 Title,
