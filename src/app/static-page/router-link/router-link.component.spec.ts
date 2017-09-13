@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FakeRouterLinkComponent } from './fake-router-link.component';
+import { RouterLinkWhatIsCaComponent } from './router-link.component';
 
-describe('FakeRouterLinkComponent', () => {
-  let component: FakeRouterLinkComponent;
-  let fixture: ComponentFixture<FakeRouterLinkComponent>;
+describe('RouterLinkWhatIsCaComponent', () => {
+  let component: RouterLinkWhatIsCaComponent;
+  let fixture: ComponentFixture<RouterLinkWhatIsCaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FakeRouterLinkComponent ]
+      declarations: [ RouterLinkWhatIsCaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FakeRouterLinkComponent);
+    fixture = TestBed.createComponent(RouterLinkWhatIsCaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

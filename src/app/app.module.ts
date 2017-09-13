@@ -18,7 +18,12 @@ import {EventsService} from "./events/events.service";
 import {DatePipe} from "@angular/common";
 import {MapModalButtonComponent} from "./common/map-modal-button/map-modal-button.component";
 import {DynamicHTMLModule} from "ng-dynamic";
-import {FakeRouterLinkComponent} from "./static-page/fake-router-link/fake-router-link.component";
+import {
+    RouterLink12StepsComponent,
+    RouterLinkMeetingsComponent,
+    RouterLinkWhatIsCaComponent,
+    RouterLinkWhoIsMemComponent
+} from "./static-page/router-link/router-link.component";
 
 const appRoutes: Routes = [
     {
@@ -56,7 +61,10 @@ const appRoutes: Routes = [
         StaticPageComponent,
         EventComponent,
         MapModalButtonComponent,
-        FakeRouterLinkComponent
+        RouterLinkWhatIsCaComponent,
+        RouterLinkWhoIsMemComponent,
+        RouterLinkMeetingsComponent,
+        RouterLink12StepsComponent
     ],
     imports: [
         HttpClientModule,
@@ -65,7 +73,10 @@ const appRoutes: Routes = [
         NgbModule.forRoot(),
         DynamicHTMLModule.forRoot({
             components: [
-                {component: FakeRouterLinkComponent, selector: "ca-fake-router-link"}
+                {component: RouterLinkWhatIsCaComponent, selector: "ca-router-link-whatisca"},
+                {component: RouterLinkWhoIsMemComponent, selector: "ca-router-link-whoismem"},
+                {component: RouterLinkMeetingsComponent, selector: "ca-router-link-meetings"},
+                {component: RouterLink12StepsComponent, selector: "ca-router-link-12steps"}
             ]
         })
     ],

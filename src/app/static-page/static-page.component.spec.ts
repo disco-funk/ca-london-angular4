@@ -9,7 +9,7 @@ import {DebugElement} from "@angular/core";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {RouterTestingModule} from "@angular/router/testing";
 import {DynamicHTMLModule} from "ng-dynamic";
-import {FakeRouterLinkComponent} from "./fake-router-link/fake-router-link.component";
+import {RouterLinkWhatIsCaComponent} from "./router-link/router-link.component";
 
 describe("StaticPageComponent", () => {
     let component: StaticPageComponent, staticPageService: StaticPageService;
@@ -17,7 +17,7 @@ describe("StaticPageComponent", () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [StaticPageComponent, FakeRouterLinkComponent],
+            declarations: [StaticPageComponent, RouterLinkWhatIsCaComponent],
             providers: [
                 {provide: StaticPageService, useClass: MockStaticPageService},
                 {provide: APP_CONFIG, useValue: mockAppConfig}
@@ -28,7 +28,7 @@ describe("StaticPageComponent", () => {
                 ]),
                 DynamicHTMLModule.forRoot({
                     components: [
-                        {component: FakeRouterLinkComponent, selector: "ca-fake-router-link"}
+                        {component: RouterLinkWhatIsCaComponent, selector: "ca-fake-router-link"}
                     ]
                 })]
         });
