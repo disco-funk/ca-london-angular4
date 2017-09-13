@@ -19,7 +19,7 @@ import {DatePipe} from "@angular/common";
 import {MapModalButtonComponent} from "./common/map-modal-button/map-modal-button.component";
 import {DynamicHTMLModule} from "ng-dynamic";
 import {
-    RouterLink12StepsComponent,
+    RouterLink12StepsComponent, RouterLinkHelplineComponent,
     RouterLinkMeetingsComponent,
     RouterLinkWhatIsCaComponent,
     RouterLinkWhoIsMemComponent
@@ -64,7 +64,8 @@ const appRoutes: Routes = [
         RouterLinkWhatIsCaComponent,
         RouterLinkWhoIsMemComponent,
         RouterLinkMeetingsComponent,
-        RouterLink12StepsComponent
+        RouterLink12StepsComponent,
+        RouterLinkHelplineComponent
     ],
     imports: [
         HttpClientModule,
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
                 {component: RouterLinkWhatIsCaComponent, selector: "ca-router-link-whatisca"},
                 {component: RouterLinkWhoIsMemComponent, selector: "ca-router-link-whoismem"},
                 {component: RouterLinkMeetingsComponent, selector: "ca-router-link-meetings"},
-                {component: RouterLink12StepsComponent, selector: "ca-router-link-12steps"}
+                {component: RouterLink12StepsComponent, selector: "ca-router-link-12steps"},
+                {component: RouterLinkHelplineComponent, selector: "ca-router-link-helpline"}
             ]
         })
     ],

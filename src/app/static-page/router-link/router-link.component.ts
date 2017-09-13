@@ -27,3 +27,10 @@ export class RouterLinkMeetingsComponent {
 })
 export class RouterLink12StepsComponent {
 }
+
+@Component({
+    selector: "ca-router-link-helpline",
+    template: `<a routerLink="/page/helpline" class="alert-link">More Details&hellip;</a>`
+})
+export class RouterLinkHelplineComponent {
+}
