@@ -2,10 +2,12 @@ import {Title} from "@angular/platform-browser";
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, NavigationEnd, Router, UrlSegment} from "@angular/router";
 import "rxjs/add/operator/filter";
+import "rxjs/add/observable/combineLatest";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 import {PageTitleService} from "../core/page-title.service";
 import {StaticPageService} from "../static-page/static-page.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: "ca-app-root",
@@ -15,70 +17,67 @@ import {StaticPageService} from "../static-page/static-page.service";
 export class AppComponent implements OnInit {
 
     private static TITLE_SUFFIX: string = " | Cocaine Anonymous London";
-    private isCacheReady: boolean;
     isCollapsed: boolean;
     isLoading: boolean;
+    disclaimers: Array<string>;
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute, public pageTitleService: PageTitleService,
-                private title: Title, private staticPageService: StaticPageService) {
+                private title: Title, public staticPageService: StaticPageService) {
         this.isCollapsed = true;
         this.isLoading = true;
-        this.isCacheReady = false;
+        this.disclaimers = [];
+        this.title.setTitle("Cocaine Anonymous London");
     }
 
     ngOnInit(): void {
-        this.staticPageService.pageCacheReady
-            .subscribe((isCacheReady: boolean) => {
-                this.isCacheReady = isCacheReady;
-
-                const segments: Array<string> = this.router.url.split("/");
-
-                if (isCacheReady && segments[1] === "page") {
-                    this.pageTitleService.title = this.staticPageService.getPage(segments[2]).PageTitle;
-                    this.title.setTitle(`${this.staticPageService.getPage(segments[2]).PageTitle}${AppComponent.TITLE_SUFFIX}`);
-                    this.isLoading = false;
-                }
-            });
-
-        this.router.events
+        const activatedRouteObservable: Observable<ActivatedRoute> = this.router.events
             .filter(event => event instanceof NavigationEnd)
-            .filter((event: NavigationEnd) => event.url.startsWith("/page/"))
             .map(() => this.activatedRoute)
-            .map((route) => {
+            .map((route: ActivatedRoute) => {
                 while (route.firstChild) {
                     route = route.firstChild;
                 }
                 return route;
             })
-            .filter(route => route.outlet === "primary")
-            .mergeMap(route => route.url)
-            .subscribe((url: Array<UrlSegment>) => {
-                if (this.isCacheReady) {
-                    this.pageTitleService.title = this.staticPageService.getPage(url[1].path).PageTitle;
-                    this.title.setTitle(`${this.staticPageService.getPage(url[1].path).PageTitle}${AppComponent.TITLE_SUFFIX}`);
-                    this.isLoading = false;
+            .filter(route => route.outlet === "primary");
+
+        Observable
+            .combineLatest(activatedRouteObservable,
+                this.staticPageService.pageCacheReady,
+                (activatedRoute: ActivatedRoute, isPageCacheReady: boolean) =>
+                    ({activatedRoute, isPageCacheReady}))
+            .subscribe(routeInfo => {
+
+                this.isLoading = !routeInfo.isPageCacheReady;
+
+                if (routeInfo.activatedRoute.snapshot.url[0].path === "page") {
+                    if (routeInfo.isPageCacheReady) {
+                        this.pageTitleService.title =
+                            this.staticPageService.getPage(routeInfo.activatedRoute.snapshot.url[1].path).PageTitle;
+                        this.title.setTitle(`${this.pageTitleService.title}${AppComponent.TITLE_SUFFIX}`);
+                        this.loadDisclaimers(routeInfo.activatedRoute.snapshot.url[1].path);
+                    } else {
+                        this.pageTitleService.title = "Loading...";
+                        this.title.setTitle("Cocaine Anonymous London");
+                    }
                 } else {
-                    this.pageTitleService.title = "Loading...";
-                    this.title.setTitle("Cocaine Anonymous London");
+                    this.pageTitleService.title = routeInfo.activatedRoute.snapshot.data.title;
+                    this.title.setTitle(`${this.pageTitleService.title}${AppComponent.TITLE_SUFFIX}`);
+                    this.loadDisclaimers(routeInfo.activatedRoute.snapshot.url[0].path);
                 }
             });
+    }
 
-        this.router.events
-            .filter(event => event instanceof NavigationEnd)
-            .filter((event: NavigationEnd) => !event.url.startsWith("/page/"))
-            .map(() => this.activatedRoute)
-            .map((route) => {
-                while (route.firstChild) {
-                    route = route.firstChild;
-                }
-                return route;
-            })
-            .filter(route => route.outlet === "primary")
-            .mergeMap(route => route.data)
-            .subscribe(data => {
-                this.pageTitleService.title = data.title;
-                this.title.setTitle(`${this.pageTitleService.title}${AppComponent.TITLE_SUFFIX}`);
-                this.isLoading = false;
-            });
+    private loadDisclaimers(pageName: string): void {
+        this.disclaimers = ["disclaimmain"];
+        if (pageName === "whoismem" || pageName === "whatisca" || pageName.substr(0, 4) === "read") {
+            this.disclaimers.push("disclaimlit");
+        }
+        if (pageName === "home") {
+            this.disclaimers.push("disclaimhome");
+        }
+        if (pageName === "meetings" || pageName === "events" || pageName === "areamap") {
+            this.disclaimers.push("disclaim6th");
+        }
     }
 }

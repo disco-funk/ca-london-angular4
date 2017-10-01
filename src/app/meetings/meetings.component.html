@@ -1,5 +1,98 @@
-<div class="container">
-  <p>
-  meetings works!
-  </p>
+<div ng-controller="MeetingListCtrl as vm">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="alert alert-info" role="alert" ng-if="!vm.sessionService.isLoggedIn()">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                <span class="sr-only">Info:</span>
+                The Meetings List is maintained by CA London Area PI Committee. To edit meeting details, <a href="#!/page/signup">Sign Up</a> or <a href="#!/page/login">Log In</a>.
+            </div>
+            <div class="alert alert-info" role="alert" ng-if="vm.sessionService.isLoggedIn()">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                <span class="sr-only">Info:</span>
+                The Meetings List is maintained by CA London Area PI Committee. Click on the "edit" button next to a meeting to amend meeting details.
+            </div>
+            <div class="well" ng-if="vm.sessionService.isLoggedIn()">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="vm.addNewMeeting()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add new meeting
+                </button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="./downloads/London-Area-WTF-2017-08.pdf" target="_blank">
+                            <img src="./images/icons/pdf.ico" alt="London Area Meetings List - August 2017" class="icon" />
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="media-heading">Where To Find</h4>
+                        Download a PDF of the latest London Area meetings list
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Search for meetings</h3>
+    <div class="row">
+        <div class="col-md-8">
+            <!--<ca-meeting-search-filter></ca-meeting-search-filter>-->
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <div class="form-group">
+                    <label for="groupByWeekDay">Group By Weekday</label><br />
+                    <input type="checkbox" name="groupByWeekDay" id="groupByWeekDay" ng-model="vm.groupByWeekDayFlag" />
+                </div>
+                <form role="form" ng-submit="vm.doDistanceSearch()" name="distanceSearchForm" id="distanceSearchForm">
+                    <div ng-class="{'form-group':true, 'has-error': distanceSearchForm.distanceSearch.$dirty && distanceSearchForm.distanceSearch.$invalid}">
+                        <label for="distanceSearch">Distance Search</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="distanceSearch" id="distanceSearch"
+                                   placeholder="Enter postcode e.g. SW1A 0AA" ng-model="vm.distanceSearch"
+                                   ng-change="vm.setUsingDistance(false)"
+                                   ca-valid-postcode>
+                            <span class="input-group-btn">
+                                <input class="btn btn-primary" role="button" name="distanceSearchSubmit"
+                                       id="distanceSearchSubmit" type="submit" value="Go"
+                                       ng-disabled="(distanceSearchForm.distanceSearch.$dirty && distanceSearchForm.distanceSearch.$invalid) || !vm.distanceSearch" />
+                            </span>
+                        </div>
+                        <p class="help-block"
+                           ng-show="distanceSearchForm.distanceSearch.$dirty && distanceSearchForm.distanceSearch.$invalid">
+                            Please enter a valid postcode
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div ng-show="!vm.meetings.length && !vm.isLoading">
+        <h3>No meetings found</h3>
+    </div>
+    <div ng-show="vm.isLoading">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span class="sr-only">Loading</span>
+            </div>
+        </div>
+    </div>
+    <div ng-repeat="(key, value) in vm.meetings | meetingList: vm.weekdayIncludes | filter: vm.address | filter: vm.activeFilter | groupBy: vm.groupByWeekDay()">
+        <!--<h3 ng-show="vm.groupByWeekDayFlag">Meetings on {{ vm.meetingService.getWeekday(key) }}</h3>-->
+        <h3 ng-show="!vm.groupByWeekDayFlag">Meetings</h3>
+        <div class="row">
+            <div ng-repeat="meeting in value | orderBy: vm.orderBy">
+                <div class="clearfix" ng-if="$index % 3 == 0"></div>
+                <div class="col-xs-12 col-md-4">
+                    <!--<ca-meeting-panel meeting="meeting"-->
+                    <!--group-by-weekday="vm.groupByWeekDayFlag"-->
+                    <!--using-distance="vm.usingDistance"-->
+                    <!--distance-search="vm.distanceSearch"-->
+                    <!--show-edit-button="vm.sessionService.isLoggedIn()">-->
+                    <!--</ca-meeting-panel>-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

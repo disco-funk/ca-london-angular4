@@ -50,7 +50,7 @@ describe("StaticPageComponent", () => {
 
             fixture.detectChanges();
 
-            const debugElement: DebugElement = fixture.debugElement.query(By.css("div"));
+            const debugElement: DebugElement = fixture.debugElement.query(By.css("dynamic-html"));
 
             expect(component.rawPageContent).toEqual("");
             expect(debugElement.nativeElement.innerText).toEqual("");
@@ -61,7 +61,7 @@ describe("StaticPageComponent", () => {
 
             fixture.detectChanges();
 
-            const debugElement: DebugElement = fixture.debugElement.query(By.css("div"));
+            const debugElement: DebugElement = fixture.debugElement.query(By.css("dynamic-html"));
 
             expect(component.rawPageContent).toEqual("<div>about some content</div>");
             expect(debugElement.nativeElement.innerText).toEqual("about some content");

@@ -1,95 +1,105 @@
 <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #36A7E7;">
-    <a class="navbar-brand" routerLink="/page/home"><img src="../../assets/ca-logo-small-seethru.png"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-            (click)="isCollapsed = !isCollapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #36A7E7;">
+        <a class="navbar-brand" routerLink="/page/home"><img src="../../assets/ca-logo-small-seethru.png"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                (click)="isCollapsed = !isCollapsed">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
 
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/page/home"><i class="fa fa-home" aria-hidden="true"></i></a>
-        </li>
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/page/home"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
 
-        <li class="nav-item dropdown" ngbDropdown>
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="meetingsDropdownMenuLink" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Meetings
-          </a>
-          <div class="dropdown-menu" aria-labelledby="meetingsDropdownMenuLink" ngbDropdownMenu>
-            <a class="dropdown-item" routerLink="/page/aboutmeeting">About Meetings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/meetings">Find A Meeting</a>
-            <a class="dropdown-item" routerLink="/areamap">London Area Map</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/page/othercasites">Other CA Websites</a>
-          </div>
-        </li>
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" ngbDropdownToggle id="meetingsDropdownMenuLink"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Meetings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="meetingsDropdownMenuLink" ngbDropdownMenu>
+                        <a class="dropdown-item" routerLink="/page/aboutmeeting">About Meetings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/meetings">Find A Meeting</a>
+                        <a class="dropdown-item" routerLink="/areamap">London Area Map</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/page/othercasites">Other CA Websites</a>
+                    </div>
+                </li>
 
-        <li class="nav-item dropdown" ngbDropdown>
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="eventsDropdownMenuLink" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Events
-          </a>
-          <div class="dropdown-menu" aria-labelledby="eventsDropdownMenuLink" ngbDropdownMenu>
-            <a class="dropdown-item" routerLink="/events">Events</a>
-            <a class="dropdown-item" routerLink="/page/convention">London Convention 2018</a>
-          </div>
-        </li>
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" ngbDropdownToggle id="eventsDropdownMenuLink"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Events
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="eventsDropdownMenuLink" ngbDropdownMenu>
+                        <a class="dropdown-item" routerLink="/events">Events</a>
+                        <a class="dropdown-item" routerLink="/page/convention">London Convention 2018</a>
+                    </div>
+                </li>
 
-        <li class="nav-item dropdown" ngbDropdown>
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="newcomerDropdownMenuLink" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            To The Newcomer
-          </a>
-          <div class="dropdown-menu" aria-labelledby="newcomerDropdownMenuLink" ngbDropdownMenu>
-            <a class="dropdown-item" routerLink="/page/whatisca">What is CA?</a>
-            <a class="dropdown-item" routerLink="/page/whoismem">Who is a CA Member?</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/page/12steps">12 Steps</a>
-            <a class="dropdown-item" routerLink="/page/12traditions">12 Traditions</a>
-            <a class="dropdown-item" routerLink="/read">Read Literature</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/page/helpline">Helpline&nbsp;<i class="fa fa-phone-square"
-                                                                             aria-hidden="true"></i></a>
-          </div>
-        </li>
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" ngbDropdownToggle id="newcomerDropdownMenuLink"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        To The Newcomer
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="newcomerDropdownMenuLink" ngbDropdownMenu>
+                        <a class="dropdown-item" routerLink="/page/whatisca">What is CA?</a>
+                        <a class="dropdown-item" routerLink="/page/whoismem">Who is a CA Member?</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/page/12steps">12 Steps</a>
+                        <a class="dropdown-item" routerLink="/page/12traditions">12 Traditions</a>
+                        <a class="dropdown-item" routerLink="/read">Read Literature</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/page/helpline">Helpline&nbsp;<i class="fa fa-phone-square"
+                                                                                              aria-hidden="true"></i></a>
+                    </div>
+                </li>
 
-        <li class="nav-item dropdown" ngbDropdown>
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="myAccountDropdownMenuLink" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            My Account
-          </a>
-          <div class="dropdown-menu" aria-labelledby="myAccountDropdownMenuLink" ngbDropdownMenu>
-            <a class="dropdown-item" routerLink="/signup">Sign Up</a>
-            <a class="dropdown-item" routerLink="/login">Log In</a>
-          </div>
-        </li>
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" ngbDropdownToggle id="myAccountDropdownMenuLink"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="myAccountDropdownMenuLink" ngbDropdownMenu>
+                        <a class="dropdown-item" routerLink="/signup">Sign Up</a>
+                        <a class="dropdown-item" routerLink="/login">Log In</a>
+                    </div>
+                </li>
 
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-        </li>
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                </li>
 
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Enter Meeting Postcode" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Enter Meeting Postcode"
+                       aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
 </div>
 
 <div class="container mt-4">
-  <div class="page-header">
-    <h1 class="display-4">{{pageTitleService.title}}</h1>
-  </div>
-
-  <hr/>
-
+    <div class="page-header">
+        <h1 class="display-4">{{pageTitleService.title}}</h1>
+    </div>
+    <hr/>
 </div>
 
-<router-outlet></router-outlet>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
 <div *ngIf="isLoading" id="loader"></div>
+
+<div *ngIf="!isLoading" class="container">
+    <dynamic-html *ngFor="let disclaimer of disclaimers" [content]="staticPageService.getPage(disclaimer).PageContent"></dynamic-html>
+</div>

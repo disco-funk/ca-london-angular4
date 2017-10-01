@@ -46,43 +46,43 @@ describe("AppComponent", () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AppComponent);
-        component = fixture.componentInstance;
         router = fixture.debugElement.injector.get(Router);
         pageTitleService = fixture.debugElement.injector.get(PageTitleService);
         title = fixture.debugElement.injector.get(Title);
         staticPageService = fixture.debugElement.injector.get(StaticPageService);
+
+        spyOn(title, "setTitle");
+
+        component = fixture.componentInstance;
     });
 
     it("should be created", () => {
         expect(component).toBeTruthy();
     });
 
-    describe("Narrow format navbar collapsed initial state", () => {
-        it("should be true", () => {
+    describe("Component initial state", () => {
+        it("should be collapsed and loading with no disclaimer", () => {
             expect(component.isCollapsed).toEqual(true);
             expect(component.isLoading).toEqual(true);
+            expect(component.disclaimers).toEqual([]);
         });
     });
 
     describe("#ngOnInit", () => {
-        beforeEach(() => {
-            spyOn(title, "setTitle");
-        });
-
-        it("should add page title for dynamic page", () => {
+        it("should add page title and disclaimer for dynamic page", () => {
             router.navigate(["home"])
                 .then(result => {
                     expect(result).toEqual(true);
+                    expect(component.isLoading).toEqual(false);
                     expect(component.pageTitleService.title).toEqual("Dynamic Page Title");
                     expect(title.setTitle).toHaveBeenCalledWith("Dynamic Page Title | Cocaine Anonymous London");
-                    expect(component.isLoading).toEqual(false);
-                }, err => {
-                    fail(`Router navigation error : ${err}`);
-                });
+                    expect(component.disclaimers).toEqual(["disclaimmain", "disclaimhome"]);
+                }, err =>
+                    fail(`Router navigation error : ${err}`));
             fixture.detectChanges();
         });
 
-        it("should add page title for static page if page cache is ready", () => {
+        it("should add page title and disclaimer for static page if page cache is ready", () => {
             spyOnProperty(staticPageService, "pageCacheReady", "get").and.returnValue(new BehaviorSubject<boolean>(true));
 
             router.navigate(["page", "static"])
@@ -91,9 +91,9 @@ describe("AppComponent", () => {
                     expect(component.pageTitleService.title).toEqual("What To Expect At A C.A. Meeting");
                     expect(title.setTitle).toHaveBeenCalledWith("What To Expect At A C.A. Meeting | Cocaine Anonymous London");
                     expect(component.isLoading).toEqual(false);
-                }, err => {
-                    fail(`Router navigation error : ${err}`);
-                });
+                    expect(component.disclaimers).toEqual(["disclaimmain"]);
+                }, err =>
+                    fail(`Router navigation error : ${err}`));
             fixture.detectChanges();
         });
 
@@ -106,9 +106,9 @@ describe("AppComponent", () => {
                     expect(component.pageTitleService.title).toEqual("Loading...");
                     expect(title.setTitle).toHaveBeenCalledWith("Cocaine Anonymous London");
                     expect(component.isLoading).toEqual(true);
-                }, err => {
-                    fail(`Router navigation error : ${err}`);
-                });
+                    expect(component.disclaimers).toEqual([]);
+                }, err =>
+                    fail(`Router navigation error : ${err}`));
             fixture.detectChanges();
         });
 
@@ -123,9 +123,9 @@ describe("AppComponent", () => {
                     expect(component.pageTitleService.title).toEqual("What To Expect At A C.A. Meeting");
                     expect(title.setTitle).toHaveBeenCalledWith("What To Expect At A C.A. Meeting | Cocaine Anonymous London");
                     expect(component.isLoading).toEqual(false);
-                }, err => {
-                    fail(`Router navigation error : ${err}`);
-                });
+                    expect(component.disclaimers).toEqual(["disclaimmain"]);
+                }, err =>
+                    fail(`Router navigation error : ${err}`));
             fixture.detectChanges();
         });
     });
@@ -133,7 +133,7 @@ describe("AppComponent", () => {
 
 @Component({
     selector: "ca-dummy-component",
-    template: "<div></div>"
+    template: "<div>Dummy Component</div>"
 })
 class DummyComponent {
 }
